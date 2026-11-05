@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "package": "@coderline/alphatab",
+  "version": "1.8.4",
+  "registry": "https://registry.npmjs.org/@coderline%2Falphatab/1.8.4",
+  "url": "https://registry.npmjs.org/@coderline/alphatab/-/alphatab-1.8.4.tgz",
+  "integrity": "sha512-VN5rfTZZWgA63Ny1aDKCp02k3Qm9CHhg4Q9AnK0kHm7G+fNDNZo36TeToPDFoJ6VpB9+AHcCrHwHFUP1tKqdsw==",
+  "archiveSHA256": "70b2c77abc9698a055d90a11d77308b6b41247936476e969d85770e3d4db4602",
+  "members": {
+    "package/package.json": {
+      "size": 2822,
+      "sha256": "2e1d8477912936040f0a7bff14e5d52c24d4e94d4838d8d1d25073fdc8b1fd32"
+    },
+    "package/dist/alphaTab.min.js": {
+      "size": 1120736,
+      "sha256": "2d0335501b875453d52359de23cd9cebfcf71aed3d5739f1cf95117acfd52bec",
+      "output": "alphaTab.min.js",
+      "finalSHA256": "c225111228d63eaa574334315bddca5e5836d07186279bac558d0aa55805b80a"
+    },
+    "package/dist/font/Bravura.woff2": {
+      "size": 313348,
+      "sha256": "181e0e7c4889f9ad57dde0a11988fa61b941617aa499ecdb9dfd4713896c2b19",
+      "output": "font/Bravura.woff2",
+      "finalSHA256": "181e0e7c4889f9ad57dde0a11988fa61b941617aa499ecdb9dfd4713896c2b19"
+    },
+    "package/LICENSE": {
+      "size": 16901,
+      "sha256": "de981130586154b6ce2cf91528b9291789192d62234d0d7e6e41d085b8e1d351",
+      "output": "alphaTab-LICENSE.txt",
+      "finalSHA256": "de981130586154b6ce2cf91528b9291789192d62234d0d7e6e41d085b8e1d351"
+    }
+  },
+  "emptyStemGuard": {
+    "before": "get(t.displayStart).slots.slice(),a.sort((t,e)=>t.topY-e.topY)),1===a.length)return void r.fillRect(s,i,this.smuflMetrics.stemThickness,n-i)",
+    "after": "get(t.displayStart).slots.slice(),a.sort((t,e)=>t.topY-e.topY)),a.length<=1)return void r.fillRect(s,i,this.smuflMetrics.stemThickness,n-i)"
+  },
+  "patches": {
+    "patch_alphatab_tab_ties.py": "9043fa17248009fc94c1ce032fbd91975574522b0f1d75d2e47d98a4b322bd91",
+    "patch_alphatab_notation.py": "b413c5be715abccdbe768976f635256e75446ba1b4c693197b1e4ae6528f7930",
+    "patch_alphatab_multirest.py": "442dc98ff167e3ed3a38707a7086965744d4ac9126277369bb889d0abe3fc9c7",
+    "patch_alphatab_effect_rows.py": "e552d2bac027817f39b77d7e5bd976b86d22354a3c96985efbf990d663107c1d"
+  }
+}
