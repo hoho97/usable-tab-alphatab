@@ -15,7 +15,7 @@
       "size": 1120736,
       "sha256": "2d0335501b875453d52359de23cd9cebfcf71aed3d5739f1cf95117acfd52bec",
       "output": "alphaTab.min.js",
-      "finalSHA256": "c225111228d63eaa574334315bddca5e5836d07186279bac558d0aa55805b80a"
+      "finalSHA256": "2f7232e9763a9552eed9b27b43aa4991636daede4cda6672e2f367cfb29c4b49"
     },
     "package/dist/font/Bravura.woff2": {
       "size": 313348,
@@ -36,7 +36,7 @@
   },
   "patches": {
     "patch_alphatab_tab_ties.py": "9043fa17248009fc94c1ce032fbd91975574522b0f1d75d2e47d98a4b322bd91",
-    "patch_alphatab_notation.py": "b413c5be715abccdbe768976f635256e75446ba1b4c693197b1e4ae6528f7930",
+    "patch_alphatab_notation.py": "3cbbbd3888793945db850a9fec937bfe964cc633c530d0348f4c6c461be3526e",
     "patch_alphatab_multirest.py": "442dc98ff167e3ed3a38707a7086965744d4ac9126277369bb889d0abe3fc9c7",
     "patch_alphatab_effect_rows.py": "e552d2bac027817f39b77d7e5bd976b86d22354a3c96985efbf990d663107c1d"
   }

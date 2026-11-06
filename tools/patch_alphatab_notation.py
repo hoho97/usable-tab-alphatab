@@ -85,21 +85,29 @@ PATCHES = [
      '&&e.displayStart===this.container.beat.displayStart'
      '&&e.displayDuration===this.container.beat.displayDuration'
      '&&e.duration===this.container.beat.duration&&e.dots===this.container.beat.dots))){'),
-    # Place short-note dots above every beam in their group, with a real gap.
-    # Use final beam geometry, including extra beam levels and grace scaling.
+    # Seat short-note dots just above the beams of their own beat, beside the
+    # stem. A neighbour's extra beams end at its stem and do not reach the dot.
+    # Flags curl into that spot, so they keep their x. Only paint coordinates
+    # move; the dot's layout width stays reserved.
     ('calculateOverflows(t,e){super.calculateOverflows(t,e),this.bar.isEmpty||'
      'this.rhythmMode!==C.Hidden&&this.calculateBeamingOverflows(t,e)}',
      'calculateOverflows(t,e){super.calculateOverflows(t,e);'
      'if(!this.bar.isEmpty&&this.rhythmMode!==C.Hidden){this.calculateBeamingOverflows(t,e);'
      'for(const t of this.helpers.beamHelpers)for(const e of t)for(const s of e.beats){'
      'if(s.isRest||!s.dots||s.duration<w.Eighth)continue;'
-     'const i=this.getBeatContainer(s),n=i?.onNotes;'
-     'for(const t of n?.glyphs??[])if(t.symbol===xt.AugmentationDot){'
-     'const r=Math.max(1,...e.beats.map(t=>Math.log2(t.duration)-2)),'
-     'a=e.graceType!==y.None?.75:1,'
-     'h=this.calculateBeamY(e,this.beatGlyphsStart+i.x+n.x+t.x)'
+     'const i=this.getBeatContainer(s),n=i?.onNotes,'
+     'dots=(n?.glyphs??[]).filter(t=>t.symbol===xt.AugmentationDot);'
+     'if(!dots.length)continue;'
+     'const space=this.smuflMetrics.oneStaffSpace,a=e.graceType!==y.None?.75:1,'
+     'origin=this.beatGlyphsStart+i.x+n.x;'
+     'if(!this.drawBeamHelperAsFlags(e)){'
+     'const t=this.getBeatX(s,Ua.Stem)+this.smuflMetrics.stemThickness+.4*space-origin-dots[0].x;'
+     'for(const e of dots)e.x+=t}'
+     'const r=Math.max(1,Math.log2(s.duration)-2);'
+     'for(const t of dots){'
+     'const h=this.calculateBeamY(e,origin+t.x)'
      '-(this.beamThickness+(r-1)*(this.beamSpacing+this.beamThickness))*a;'
-     't.y=h-this.smuflMetrics.oneStaffSpace*.5-(t.getBoundingBoxBottom()-t.y);'
+     't.y=h-space*.5-(t.getBoundingBoxBottom()-t.y);'
      'this.registerOverflowTop(-t.getBoundingBoxTop())}}}}'),
     # Reserve two staff spaces between lyrics and TAB. In TAB-only the margin
     # precedes the text below the rhythm; in Both it follows the text above TAB.
