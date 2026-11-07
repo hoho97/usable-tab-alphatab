@@ -63,7 +63,7 @@ def apply_empty_stem_guard(source, guard):
 
 
 PATCH_SCRIPTS = {"patch_alphatab_notation.py", "patch_alphatab_tab_ties.py", "patch_alphatab_multirest.py",
-                 "patch_alphatab_effect_rows.py"}
+                 "patch_alphatab_effect_rows.py", "patch_alphatab_header_spacing.py"}
 
 
 def verify_patch_scripts(lock):
@@ -93,13 +93,16 @@ def rebuild(data, lock):
     verify_patch_scripts(lock)
     # The existing notation entry point includes the TAB ties patch itself.
     # Empty stem slots are an earlier, separately required patch.
-    # Multi-bar rest bounds and effects are an independent layer on top, then the effect row packing switch.
+    # Multi-bar rest bounds and effects are an independent layer on top, then the effect row packing switch
+    # and the header line spacing switch.
     from patch_alphatab_notation import patch
     from patch_alphatab_multirest import patch as patch_multirest
     from patch_alphatab_effect_rows import patch as patch_effect_rows
+    from patch_alphatab_header_spacing import patch as patch_header_spacing
     source = apply_empty_stem_guard(members["package/dist/alphaTab.min.js"].decode("utf-8"), lock["emptyStemGuard"])
     outputs = {entry["output"]: members[name] for name, entry in lock["members"].items() if "output" in entry}
-    outputs["alphaTab.min.js"] = patch_effect_rows(patch_multirest(patch(source))).encode("utf-8")
+    outputs["alphaTab.min.js"] = patch_header_spacing(patch_effect_rows(patch_multirest(patch(source))))
+    outputs["alphaTab.min.js"] = outputs["alphaTab.min.js"].encode("utf-8")
     verify_outputs(outputs, lock)
     return outputs
 
